@@ -62,10 +62,10 @@ addEventListener("fetch", event => {
 
 MIT
 
-[npm-image]: https://img.shields.io/npm/v/borderlesslabs/worker-graphql.svg?style=flat
-[npm-url]: https://npmjs.org/package/borderlesslabs/worker-graphql
-[downloads-image]: https://img.shields.io/npm/dm/borderlesslabs/worker-graphql.svg?style=flat
-[downloads-url]: https://npmjs.org/package/borderlesslabs/worker-graphql
+[npm-image]: https://img.shields.io/npm/v/@borderlesslabs/worker-graphql.svg?style=flat
+[npm-url]: https://npmjs.org/package/@borderlesslabs/worker-graphql
+[downloads-image]: https://img.shields.io/npm/dm/@borderlesslabs/worker-graphql.svg?style=flat
+[downloads-url]: https://npmjs.org/package/@borderlesslabs/worker-graphql
 [travis-image]: https://img.shields.io/travis/borderlesslabs/worker-graphql.svg?style=flat
 [travis-url]: https://travis-ci.org/borderlesslabs/worker-graphql
 [coveralls-image]: https://img.shields.io/coveralls/borderlesslabs/worker-graphql.svg?style=flat
