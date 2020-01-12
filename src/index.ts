@@ -40,15 +40,15 @@ export async function getArgsFromBody(req: Request): Promise<RequestArgs> {
     return { source: "" };
   }
 
-  const info = parse(contentType);
+  const media = parse(contentType);
 
-  if (info.type === "application/graphql") {
+  if (media.type === "application/graphql") {
     const body = await req.text();
 
     return { source: body };
   }
 
-  if (info.type === "application/json") {
+  if (media.type === "application/json") {
     const body = await req.json();
 
     return {
@@ -59,7 +59,7 @@ export async function getArgsFromBody(req: Request): Promise<RequestArgs> {
     };
   }
 
-  if (info.type === "application/x-www-form-urlencoded") {
+  if (media.type === "application/x-www-form-urlencoded") {
     const body = await req.text();
     const params = new URLSearchParams(body);
     return getArgsFromParams(params);
@@ -86,9 +86,21 @@ async function exec(options: GraphQLArgs) {
 /**
  * Configuration options for handler.
  */
-export type Options = Omit<GraphQLArgs, keyof RequestArgs> & {
-  headers?: Record<string, string>;
-};
+export type Options = Omit<GraphQLArgs, keyof RequestArgs>;
+
+/**
+ * Process GraphQL request using the URL (e.g. GET).
+ */
+export async function processGraphQLFromURL(req: Request, args: Options) {
+  return exec({ ...args, ...(await getArgsFromURL(req)) });
+}
+
+/**
+ * Process GraphQL request using the request body (e.g. POST).
+ */
+export async function processGraphQLFromBody(req: Request, args: Options) {
+  return exec({ ...args, ...(await getArgsFromBody(req)) });
+}
 
 /**
  * Create a request handler for GraphQL.
@@ -101,11 +113,11 @@ export async function processGraphQL(
 
   try {
     if (method === "GET") {
-      return exec({ ...args, ...(await getArgsFromURL(req)) });
+      return await processGraphQLFromURL(req, args);
     }
 
     if (method === "POST") {
-      return exec({ ...args, ...(await getArgsFromBody(req)) });
+      return await processGraphQLFromBody(req, args);
     }
   } catch (err) {
     return new Response(null, { status: 400 });
