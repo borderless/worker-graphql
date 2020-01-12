@@ -1,6 +1,6 @@
 {
   "name": "@borderlesslabs/worker-graphql",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GraphQL server for worker environments (e.g. Cloudflare Workers)",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
