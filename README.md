@@ -66,7 +66,7 @@ MIT
 [npm-url]: https://npmjs.org/package/@borderlesslabs/worker-graphql
 [downloads-image]: https://img.shields.io/npm/dm/@borderlesslabs/worker-graphql.svg?style=flat
 [downloads-url]: https://npmjs.org/package/@borderlesslabs/worker-graphql
-[travis-image]: https://img.shields.io/travis/borderlesslabs/worker-graphql.svg?style=flat
-[travis-url]: https://travis-ci.org/borderlesslabs/worker-graphql
-[coveralls-image]: https://img.shields.io/coveralls/borderlesslabs/worker-graphql.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/borderlesslabs/worker-graphql?branch=master
+[travis-image]: https://img.shields.io/travis/BorderlessLabs/worker-graphql.svg?style=flat
+[travis-url]: https://travis-ci.org/BorderlessLabs/worker-graphql
+[coveralls-image]: https://img.shields.io/coveralls/BorderlessLabs/worker-graphql.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/BorderlessLabs/worker-graphql?branch=master
