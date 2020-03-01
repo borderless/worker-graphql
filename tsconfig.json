@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["ESNext", "WebWorker"],
+    "target": "ES2019",
+    "lib": ["ES2019", "WebWorker"],
     "outDir": "dist",
     "rootDir": "src",
     "module": "commonjs",
