@@ -1,5 +1,5 @@
 import { byteLength } from "byte-length";
-import { graphql, GraphQLArgs } from "graphql";
+import { graphql, GraphQLArgs, GraphQLError } from "graphql";
 import { parse } from "content-type";
 
 /**
@@ -71,9 +71,13 @@ export async function getArgsFromBody(req: Request): Promise<RequestArgs> {
 /**
  * Execute the GraphQL schema.
  */
-async function exec(options: GraphQLArgs) {
-  const result = await graphql(options);
-  const body = JSON.stringify(result);
+async function exec(options: GraphQLArgs & ProcessOptions) {
+  const { data, errors } = await graphql(options);
+
+  const body = JSON.stringify({
+    data,
+    errors: errors?.map(x => (options.formatError ? options.formatError(x) : x))
+  });
 
   return new Response(body, {
     headers: {
@@ -84,9 +88,16 @@ async function exec(options: GraphQLArgs) {
 }
 
 /**
+ * Configuration options for processing GraphQL.
+ */
+export type ProcessOptions = {
+  formatError?: (error: GraphQLError) => { message: string };
+};
+
+/**
  * Configuration options for handler.
  */
-export type Options = Omit<GraphQLArgs, keyof RequestArgs>;
+export type Options = Omit<GraphQLArgs, keyof RequestArgs> & ProcessOptions;
 
 /**
  * Process GraphQL request using the URL (e.g. GET).
