@@ -1,4 +1,4 @@
-import { makeExecutableSchema } from "graphql-tools";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 import { processGraphQL } from ".";
 
 import "cross-fetch/polyfill";
@@ -13,9 +13,9 @@ const schema = makeExecutableSchema({
   resolvers: {
     Query: {
       hello: () => "Hello world!",
-      echo: (_, { arg }: { arg: string }) => arg
-    }
-  }
+      echo: (_, { arg }: { arg: string }) => arg,
+    },
+  },
 });
 
 const SIMPLE_QUERY = "{ hello }";
@@ -52,11 +52,11 @@ describe("worker graphql", () => {
         method: "POST",
         body: JSON.stringify({
           query: ARGS_QUERY,
-          variables: { arg: "JSON" }
+          variables: { arg: "JSON" },
         }),
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       });
 
       const res = await processGraphQL(req, { schema });
@@ -69,8 +69,8 @@ describe("worker graphql", () => {
         method: "POST",
         body: new URLSearchParams({
           query: ARGS_QUERY,
-          variables: JSON.stringify({ arg: "URL" })
-        })
+          variables: JSON.stringify({ arg: "URL" }),
+        }),
       });
 
       const res = await processGraphQL(req, { schema });
@@ -83,8 +83,8 @@ describe("worker graphql", () => {
         method: "POST",
         body: SIMPLE_QUERY,
         headers: {
-          "Content-Type": "application/graphql"
-        }
+          "Content-Type": "application/graphql",
+        },
       });
 
       const res = await processGraphQL(req, { schema });
@@ -94,7 +94,7 @@ describe("worker graphql", () => {
 
     it("should error on missing content type", async () => {
       const req = new Request(origin, {
-        method: "POST"
+        method: "POST",
       });
 
       const res = await processGraphQL(req, { schema });
@@ -106,8 +106,8 @@ describe("worker graphql", () => {
       const req = new Request(origin, {
         method: "POST",
         headers: {
-          "Content-Type": "foo/bar"
-        }
+          "Content-Type": "foo/bar",
+        },
       });
 
       const res = await processGraphQL(req, { schema });
@@ -119,8 +119,8 @@ describe("worker graphql", () => {
       const req = new Request(origin, {
         method: "POST",
         headers: {
-          "Content-Type": "bad-type"
-        }
+          "Content-Type": "bad-type",
+        },
       });
 
       const res = await processGraphQL(req, { schema });
@@ -148,8 +148,8 @@ describe("worker graphql", () => {
             "Access-Control-Allow-Headers":
               req.headers.get("Access-Control-Request-Headers") ||
               "Content-Type",
-            "Access-Control-Allow-Origin": "*"
-          }
+            "Access-Control-Allow-Origin": "*",
+          },
         });
       }
 

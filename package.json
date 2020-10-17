@@ -1,5 +1,5 @@
 {
-  "name": "@borderlesslabs/worker-graphql",
+  "name": "@borderless/worker-graphql",
   "version": "1.0.3",
   "description": "GraphQL server for worker environments (e.g. Cloudflare Workers)",
   "main": "dist/index.js",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/BorderlessLabs/worker-graphql.git"
+    "url": "git://github.com/borderless/worker-graphql.git"
   },
   "keywords": [
     "worker",
@@ -35,9 +35,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BorderlessLabs/worker-graphql/issues"
+    "url": "https://github.com/borderless/worker-graphql/issues"
   },
-  "homepage": "https://github.com/BorderlessLabs/worker-graphql",
+  "homepage": "https://github.com/borderless/worker-graphql",
   "jest": {
     "roots": [
       "<rootDir>/src/"
@@ -69,24 +69,23 @@
     "node": ">=10"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.3",
-    "@types/node": "^13.1.2",
-    "@typescript-eslint/eslint-plugin": "^2.14.0",
-    "@typescript-eslint/parser": "^2.14.0",
-    "cross-fetch": "^3.0.4",
-    "eslint": "^6.8.0",
+    "@graphql-tools/schema": "^6.2.4",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.10",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "cross-fetch": "^3.0.6",
+    "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.17.0",
-    "graphql": "^14.5.8",
-    "graphql-tools": "^4.0.6",
+    "graphql": "^15.3.0",
     "husky": "^4.2.3",
-    "jest": "^25.1.0",
+    "jest": "^26.5.3",
     "lint-staged": "^10.0.8",
-    "prettier": "^1.19.1",
+    "prettier": "^2.1.2",
     "rimraf": "^3.0.0",
-    "ts-jest": "^25.2.1",
-    "typescript": "^3.8.3"
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
   },
   "peerDependencies": {
     "graphql": ">=14"

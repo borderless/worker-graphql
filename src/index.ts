@@ -19,7 +19,7 @@ function getArgsFromParams(params: URLSearchParams): RequestArgs {
   return {
     source: params.get("query") || "",
     operationName: params.get("operationName"),
-    variableValues: variables ? JSON.parse(variables) : undefined
+    variableValues: variables ? JSON.parse(variables) : undefined,
   };
 }
 
@@ -55,7 +55,7 @@ export async function getArgsFromBody(req: Request): Promise<RequestArgs> {
       source: typeof body.query === "string" ? body.query : "",
       operationName:
         typeof body.operationName === "string" ? body.operationName : null,
-      variableValues: body.variables
+      variableValues: body.variables,
     };
   }
 
@@ -76,14 +76,16 @@ async function exec(options: GraphQLArgs & ProcessOptions) {
 
   const body = JSON.stringify({
     data,
-    errors: errors?.map(x => (options.formatError ? options.formatError(x) : x))
+    errors: errors?.map((x) =>
+      options.formatError ? options.formatError(x) : x
+    ),
   });
 
   return new Response(body, {
     headers: {
       "Content-Type": "application/json",
-      "Content-Length": String(byteLength(body))
-    }
+      "Content-Length": String(byteLength(body)),
+    },
   });
 }
 
@@ -136,6 +138,6 @@ export async function processGraphQL(
 
   return new Response(null, {
     status: 405,
-    headers: { Allow: "GET,POST" }
+    headers: { Allow: "GET,POST" },
   });
 }

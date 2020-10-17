@@ -12,13 +12,13 @@ GraphQL on Workers was inspired by [this blog post](https://blog.cloudflare.com/
 ## Installation
 
 ```
-npm install @borderlesslabs/worker-graphql --save
+npm install @borderless/worker-graphql --save
 ```
 
 ## Usage
 
 ```ts
-import { processGraphQL } from "@borderlesslabs/worker-graphql";
+import { processGraphQL } from "@borderless/worker-graphql";
 import { makeExecutableSchema } from "graphql-tools";
 
 const schema = makeExecutableSchema({
@@ -29,9 +29,9 @@ const schema = makeExecutableSchema({
   `,
   resolvers: {
     Query: {
-      hello: () => "Hello world!"
-    }
-  }
+      hello: () => "Hello world!",
+    },
+  },
 });
 
 // Wrap `processGraphQL` with CORS support.
@@ -43,8 +43,8 @@ const handler = async (req: Request) => {
         "Access-Control-Allow-Methods": "GET,POST",
         "Access-Control-Allow-Headers":
           req.headers.get("Access-Control-Request-Headers") || "Content-Type",
-        "Access-Control-Allow-Origin": "*"
-      }
+        "Access-Control-Allow-Origin": "*",
+      },
     });
   }
 
@@ -53,7 +53,7 @@ const handler = async (req: Request) => {
   return res;
 };
 
-addEventListener("fetch", event => {
+addEventListener("fetch", (event) => {
   event.respondWith(handler(event.request));
 });
 ```
@@ -62,11 +62,11 @@ addEventListener("fetch", event => {
 
 MIT
 
-[npm-image]: https://img.shields.io/npm/v/@borderlesslabs/worker-graphql.svg?style=flat
-[npm-url]: https://npmjs.org/package/@borderlesslabs/worker-graphql
-[downloads-image]: https://img.shields.io/npm/dm/@borderlesslabs/worker-graphql.svg?style=flat
-[downloads-url]: https://npmjs.org/package/@borderlesslabs/worker-graphql
-[travis-image]: https://img.shields.io/travis/BorderlessLabs/worker-graphql.svg?style=flat
-[travis-url]: https://travis-ci.org/BorderlessLabs/worker-graphql
-[coveralls-image]: https://img.shields.io/coveralls/BorderlessLabs/worker-graphql.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/BorderlessLabs/worker-graphql?branch=master
+[npm-image]: https://img.shields.io/npm/v/@borderless/worker-graphql.svg?style=flat
+[npm-url]: https://npmjs.org/package/@borderless/worker-graphql
+[downloads-image]: https://img.shields.io/npm/dm/@borderless/worker-graphql.svg?style=flat
+[downloads-url]: https://npmjs.org/package/@borderless/worker-graphql
+[travis-image]: https://img.shields.io/travis/borderless/worker-graphql.svg?style=flat
+[travis-url]: https://travis-ci.org/borderless/worker-graphql
+[coveralls-image]: https://img.shields.io/coveralls/borderless/worker-graphql.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/borderless/worker-graphql?branch=master
